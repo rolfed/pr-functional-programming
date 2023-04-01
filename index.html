@@ -15,28 +15,24 @@
 	</head>
 	<body>
 	<div class="reveal">
-		<div class="slides">
-			<section data-markdown>
-			  <textarea data-template>
-				`We who cut mere stones must always be envisioning cathedrals.`
-
-				 *&#8212; Quarry worker's creed*
-				---
-				## Slide 2
-				---
-				## Slide 3
-			  </textarea>
-			</section>
-		</div>
-<!--			<div class="slides">-->
-<!--				<section>-->
-<!--					<q>We who cut mere stones must always be envisioning cathedrals.</q>-->
-<!--					<p>&#8212; Quarry worker's creed</p>-->
-<!--				</section>-->
-<!--				<section>-->
-<!--					Slide 2-->
-<!--				</section>-->
-<!--			</div>-->
+			<div class="slides">
+				<section data-transition="slide">
+					<q>Functional Programming: Simplifying Code Complexity</q>
+					<br>
+					<a href="https://rolfed.github.io/pr-functional-programming">https://rolfed.github.io/pr-functional-programming/</a>
+				</section>
+				<section data-transition="slide">
+					<section>
+						<p>Goal:</p>
+					</section>
+					<section data-transition="fade-in slide-out">
+						<p class="fade-in slide-out">&#8212 Equip you with knowledge and tools to apply functional programming principles</p>
+					</section>
+					<section data-transition="fade-in slide-out">
+						<p class="fade-in slide-out">&#8212 Develop confidence to experiment with this paradigm</p>
+					</section>
+				</section>
+			</div>
 		</div>
 
 		<script src="dist/reveal.js"></script>
@@ -49,6 +45,8 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+				slideNumber: 'c/t',
+				showSlideNumber: 'print',
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
