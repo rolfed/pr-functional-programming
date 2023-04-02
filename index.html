@@ -12,6 +12,13 @@
 
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<style>
+		.orange-attention {
+			color: white;
+			font-style: italic;
+		}
+	</style>
 </head>
 <body>
 <div class="reveal">
@@ -212,43 +219,67 @@
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<h2>Actions</h2>
-			<p style="font-style: italic;">
+			<p class="orange-attention">
 				Depend on when they are called.
 				<br>Also known as side effects.</p>
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<section data-auto-animate>
+				<pre data-id="actions-code-animation">
+					<code data-trim data-line-numbers>
+					async function register() {
+						const form = document.getElementById("form");
+						const submitter = document.querySelector("btn[value=save]");
+						const formData = new FormData(form, submitter);
+						const res = await fetch(url, {
+						  method: 'POST',
+						  body: JSON.stringify(formData)
+						});
+
+						return response.json();
+					}
+					</code>
+				</pre>
+			</section>
+			<section data-auto-animate>
+				<pre data-id="actions-code-animation">
+					<code data-trim data-line-numbers>
+					async function register() {
+						// Side effect
+						const form = document.getElementById("form");
+						// Side effect
+						const submitter = document.querySelector("btn[value=save]");
+						// Side effect
+						const formData = new FormData(form, submitter);
+						// Side effect
+						const res = await fetch(url, {
+						  method: 'POST',
+						  body: JSON.stringify(formData)
+						});
+
+						return response.json();
+					}
+					</code>
+				</pre>
+			</section>
+		</section>
+
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<h2>Calculations</h2>
-			<p style="font-style: italic;">
+			<p class="orange-attention">
 				Are computations that only depend on inputs and outputs.
 				<br>Also known as pure functions.</p>
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<h2>Data</h2>
-			<p style="font-style: italic;">
+			<p class="orange-attention">
 				Are records of facts about events.</p>
 		</section>
 
 
 
-
-<!--			<section data-transition="fade-in fade-out">-->
-<!--				<p class="fade-in slide-out">A programming paradigm characterized by the use of mathematical functions and the avoidance of side effects</p>-->
-<!--			</section>-->
-<!--			<section data-transition="fade-in slide-out">-->
-<!--				<p class="fade-in slide-out">A programming style that uses only pure functions without side effects</p>-->
-<!--				<p>Side effects are any behaviour of a function besides the return value</p>-->
-<!--			</section>-->
-<!--			<section data-transition="fade-in slide-out" data-background-color="rgba(247,133,48, 1)">-->
-<!--				<p>What does this really mean?</p>-->
-<!--			</section>-->
-<!--			<section data-transition="fade-in slide-out" data-background-color="rgba(247,133,48, 1)">-->
-<!--				<p>Functional programming is like building with blocks: you use functions to solve problems in a way that makes it hard to make mistakes.</p>-->
-<!--			</section>-->
-<!--			<section data-transition="fade-in slide-out" data-background-color="rgba(247,133,48, 1)">-->
-<!--				<p>We distinguase functions that </p>-->
-<!--			</section>-->
 
 	</div>
 </div>
