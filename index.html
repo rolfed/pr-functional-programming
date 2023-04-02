@@ -15,9 +15,21 @@
 
 
 	<style>
-		.orange-attention {
-			color: white;
+		.attention {
+			font-weight: bold;
 			font-style: italic;
+		}
+		.attention-underscore {
+			text-decoration: underline;
+		}
+		.attention-white {
+			color: white;
+		}
+		.attention-orange {
+			color: #F25C05;
+		}
+		.attention-pink {
+		  color: #D9043D;
 		}
 	</style>
 </head>
@@ -220,7 +232,7 @@
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<h2>Actions</h2>
-			<p class="orange-attention">
+			<p class="attention attention-white">
 				Depend on when they are called.
 				<br>Also known as side effects.</p>
 		</section>
@@ -269,7 +281,7 @@
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<h2>Calculations</h2>
-			<p class="orange-attention">
+			<p class="attention-orange">
 				Are computations that only depend on inputs and outputs.
 				<br>Also known as pure functions or mathematical functions.</p>
 		</section>
@@ -288,7 +300,7 @@
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<h2>Data</h2>
-			<p class="orange-attention">
+			<p class="attention-orange">
 				Are records of facts about events.</p>
 		</section>
 
@@ -338,6 +350,7 @@
 
 			<section data-auto-animate>
 				<p>Can you identify which functions are actions?</p>
+				<q>Ask yourself, does it depend on when or how many times it runs?</q>
 				<pre data-id="actions-code-animation">
 					<code data-trim
 						  data-line-numbers>
@@ -392,6 +405,116 @@
 			</section>
 		</section>
 
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<p>In our presentation, we highlighted how <span class="attention attention-underscore">skilled Functional Programmers</span>
+				adeptly <span class="attention attention-underscore">organize functions</span>
+				with <span class="attention attention-underscore">minimal side effects</span>
+				to reduce any adverse impact.</p>
+		</section>
+
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<section data-auto-animate>
+				<p>Let's refactor our cart to minimize side effects</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers>
+						function calcTotal() {
+						  for (let item of cart) {
+					        total += item.quantity * parseFloat(item.price);
+						  }
+						}
+
+						function updateTotal() {
+						  calcTotal();
+						  console.log(`Total cost: $${total.toFixed(2)}`);
+						}
+					</code>
+				</pre>
+			</section>
+			<section data-auto-animate>
+				<p>We need to update the calcTotal function to accept the cart
+					as a parameter rather than accessing it directly.</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers="1-2">
+						function calcTotal(cart) {
+						  for (let item of cart) {
+					        total += item.quantity * parseFloat(item.price);
+						  }
+						}
+					</code>
+				</pre>
+			</section>
+			<section data-auto-animate>
+				<p>Next let's return the total to remove the dependency on the total global variable</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers="2,6">
+						function calcTotal(cart) {
+						 var total = 0;
+						  for (let item of cart) {
+					        total += item.quantity * parseFloat(item.price);
+						  }
+						  return total.toFixed(2);
+						}
+					</code>
+				</pre>
+			</section>
+			<section data-auto-animate>
+				<p>Next let's modify updateTotal() to accept our changes</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers="10">
+						function calcTotal(cart) {
+						 var total = 0;
+						  for (let item of cart) {
+					        total += item.quantity * parseFloat(item.price);
+						  }
+						  return total.toFixed(2);
+						}
+
+						function updateTotal() {
+						  const total = calcTotal(cart);
+						  console.log(`Total cost: $${total}`);
+						}
+					</code>
+				</pre>
+			</section>
+			<section data-auto-animate>
+				<p>What did we gain by this refactor?</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers>
+						function calcTotal(cart) {
+						 var total = 0;
+						  for (let item of cart) {
+					        total += item.quantity * parseFloat(item.price);
+						  }
+						  return total.toFixed(2);
+						}
+
+						function updateTotal() {
+						  const total = calcTotal(cart);
+						  console.log(`Total cost: $${total}`);
+						}
+					</code>
+				</pre>
+			</section>
+
+			<section data-auto-animate>
+				<p>By refactoring calcTotal() to be an action that accepts the cart as a parameter, you make it decoupled and modular in a couple of ways:</p>
+			</section>
+			<section data-auto-animate>
+				<p>1. <span class="attention attention-underscore">Decoupling</span>: Previously, calcTotal() relied on a direct reference to the cart array, which can make it tightly coupled to other parts of your code. This can lead to issues if the cart array structure changes, as it can break the functionality of calcTotal(). By passing the cart as a parameter, calcTotal() becomes independent of the cart implementation and can work with any cart object that has the same structure</p>
+			</section>
+
+			<section data-auto-animate>
+				<p>2. <span class="attention attention-underscore">Modularity</span>: By separating the calcTotal() function from the cart data, you increase the modularity of your code. This means that if you need to reuse the calcTotal() function in another part of your codebase, you can simply pass in a different cart object and it will work as expected. This makes your code more modular and easier to maintain, as changes to one part of the code won't impact other parts that depend on it</p>
+			</section>
+			<section data-auto-animate>
+				<p>In summary, by refactoring calcTotal() to be an calculation that accepts the cart as a parameter, you make it more decoupled and modular. This leads to more robust and maintainable code.</p>
+			</section>
+		</section>
 
 
 
