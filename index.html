@@ -1,56 +1,154 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Functional Programming by Danniel Rolfe</title>
+	<title>Functional Programming by Danniel Rolfe</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/moon.css">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-	<div class="reveal">
-			<div class="slides">
-				<section data-transition="slide">
-					<q>Functional Programming: Simplifying Code Complexity</q>
-					<br>
-					<a href="https://rolfed.github.io/pr-functional-programming">https://rolfed.github.io/pr-functional-programming/</a>
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+		<!-- SLIDE 1 -->
+		<section data-transition="slide" data-background-color="rgba(224,255,105, 1)">
+			<h2>Functional Programming:</h2>
+			<h2>Simplifying Code Complexity</h2>
+			<p>Papoy Team - Danniel Rolfe</p>
+			<br>
+			<a href="https://rolfed.github.io/pr-functional-programming">https://rolfed.github.io/pr-functional-programming/</a>
+		</section>
+
+		<!-- SLIDE 2 -->
+		<section data-transition="slide" data-background-color="rgba(224,255,105, 1)">
+			<section>
+				<h2>The Scope of This Presentation</h2>
+			</section>
+			<section data-transition="fade-in fade-out">
+				<p class="fade-in slide-out">This presentation is an overview of key concepts in functional programming,
+					aimed at introducing software engineers to this paradigm</p>
+			</section>
+			<section data-transition="fade-in fade-out">
+				<p class="fade-in slide-out">This presentation is not a deep dive into advanced topics in functional
+					programming, but rather a broad introduction to its benefits and principles</p>
+			</section>
+			<section data-transition="fade-in fade-out">
+				<p class="fade-in slide-out">This presentation is intended for developers who are new to functional
+					programming or who are interested in learning more about this approach to software development</p>
+			</section>
+			<section data-transition="fade-in fade-out">
+				<p class="fade-in slide-out">This presentation is not a language-specific tutorial on how to use functional
+					programming in a particular programming language, but rather a general overview of its principles and techniques</p>
+			</section>
+			<section data-transition="fade-in fade-out">
+				<p class="fade-in slide-out">By the end of this presentation, you will have a basic understanding
+					of the principles of functional programming and how they can be applied to improve code quality
+					and maintainability</p>
+			</section>
+		</section>
+
+		<!-- SLIDE 3 -->
+		<section data-transition="slide" data-background-color="rgba(224,255,105, 1)">
+			<section>
+				<h2>Topics that we will cover in this presentation:</h2>
+			</section>
+			<section data-transition="fade-in fade-out">
+				<p>Concepts of functional thinking</p>
+			</section>
+			<section data-transition="fade-in fade-out">
+				<p>Functions as first-class citizens</p>
+			</section>
+			<section data-transition="fade-in fade-out">
+				<p>Higher-order functions</p>
+			</section>
+			<section data-transition="fade-in fade-out">
+				<p>Immutable data structures</p>
+			</section>
+			<section data-transition="fade-in fade-out">
+				<p>Functional design patterns</p>
+			</section>
+			<section data-transition="fade-in fade-out">
+				<p>Q&A</p>
+			</section>
+		</section>
+
+		<!-- SLIDE 4 -->
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<section>
+				<h1>What is Functional Programming?</h1>
+			</section>
+		</section>
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<section data-auto-animate>
+				<h1>Academic definition</h1>
+			</section>
+			<section data-auto-animate>
+				<h1>Academic definition</h1>
+				<p>A programming paradigm characterized by the use of mathematical functions and the avoidance of side effects</p>
+			</section>
+		</section>
+
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<section>
+				<p>What is Functional Programming?</p>
+			</section>
+			<section data-transition="fade-in fade-out">
+				<section data-auto-animate>
+					<p class="fade-in slide-out">Academic definition:</p>
 				</section>
-				<section data-transition="slide">
-					<section>
-						<p>Goal:</p>
-					</section>
-					<section data-transition="fade-in slide-out">
-						<p class="fade-in slide-out">&#8212 Equip you with knowledge and tools to apply functional programming principles</p>
-					</section>
-					<section data-transition="fade-in slide-out">
-						<p class="fade-in slide-out">&#8212 Develop confidence to experiment with this paradigm</p>
-					</section>
+				<section data-auto-animate>
+					<p class="fade-in slide-out">Academic definition:</p>
+					<p class="fade-in slide-out">A programming paradigm characterized by the use of mathematical functions and the avoidance of side effects</p>
 				</section>
-			</div>
-		</div>
+			</section>
+<!--			<section data-transition="fade-in fade-out">-->
+<!--				<p class="fade-in slide-out">A programming paradigm characterized by the use of mathematical functions and the avoidance of side effects</p>-->
+<!--			</section>-->
+<!--			<section data-transition="fade-in slide-out">-->
+<!--				<p class="fade-in slide-out">A programming style that uses only pure functions without side effects</p>-->
+<!--				<p>Side effects are any behaviour of a function besides the return value</p>-->
+<!--			</section>-->
+<!--			<section data-transition="fade-in slide-out" data-background-color="rgba(247,133,48, 1)">-->
+<!--				<p>What does this really mean?</p>-->
+<!--			</section>-->
+<!--			<section data-transition="fade-in slide-out" data-background-color="rgba(247,133,48, 1)">-->
+<!--				<p>Functional programming is like building with blocks: you use functions to solve problems in a way that makes it hard to make mistakes.</p>-->
+<!--			</section>-->
+<!--			<section data-transition="fade-in slide-out" data-background-color="rgba(247,133,48, 1)">-->
+<!--				<p>We distinguase functions that </p>-->
+<!--			</section>-->
+		</section>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
-				slideNumber: 'c/t',
-				showSlideNumber: 'print',
+	</div>
+</div>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+		<!-- SLIDE 4 -->
+
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+	// More info about initialization & config:
+	// - https://revealjs.com/initialization/
+	// - https://revealjs.com/config/
+	Reveal.initialize({
+		hash: true,
+		slideNumber: 'c/t',
+		showSlideNumber: 'print',
+		navigationMode: 'linear',
+		embedded: false,
+
+		// Learn about plugins: https://revealjs.com/plugins/
+		plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+	});
+</script>
+</body>
 </html>
