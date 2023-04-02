@@ -13,6 +13,7 @@
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
 
+
 	<style>
 		.orange-attention {
 			color: white;
@@ -228,9 +229,11 @@
 			<section data-auto-animate>
 				<h2>Actions</h2>
 				<pre data-id="actions-code-animation">
-					<code data-trim data-line-numbers>
+					<code data-trim
+						  data-line-numbers="2|3|4|5-8">
 					async function register() {
 						const form = document.getElementById("form");
+						const submitter = document.getElementById("submitter");
 						const formData = new FormData(form, submitter);
 						const res = await fetch(url, {
 						  method: 'POST',
@@ -245,13 +248,13 @@
 			<section data-auto-animate>
 				<h2>Actions</h2>
 				<pre data-id="actions-code-animation">
-					<code data-trim data-line-numbers>
+					<code data-trim
+					      data-line-numbers="2-9">
 					async function register() {
-						// Side effect
+						/** Side effects **/
 						const form = document.getElementById("form");
-						// Side effect
-						const submitter = document.querySelector("btn[value=save]");
-						// Side effect
+						const submitter = document.getElementById("submitter");
+						const formData = new FormData(form, submitter);
 						const res = await fetch(url, {
 						  method: 'POST',
 						  body: JSON.stringify(formData)
@@ -268,7 +271,7 @@
 			<h2>Calculations</h2>
 			<p class="orange-attention">
 				Are computations that only depend on inputs and outputs.
-				<br>Also known as pure functions.</p>
+				<br>Also known as pure functions or mathematical functions.</p>
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
@@ -290,7 +293,7 @@
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
-			<h2>Calculations</h2>
+			<h2>Data</h2>
 			<pre data-id="actions-code-animation">
 					<code data-trim data-line-numbers>
 						const emailList = [
@@ -299,6 +302,94 @@
 						]
 					</code>
 				</pre>
+		</section>
+
+
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<h2>Let's apply functional thinking.</h2>
+		</section>
+
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<section data-auto-animate>
+				<p>Take a look at this code snippet:</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers="1-4|5|7-11|13-16">
+						var cart = [
+						 { item: 'orange', quantity: 1, price: '0.99'},
+						 { item: 'apple', quantity: 1, price: '0.97'},
+						];
+						var total = 0;
+
+						function calcTotal() {
+						  for (let item of cart) {
+					        total += item.quantity * parseFloat(item.price);
+						  }
+						}
+
+						function updateTotal() {
+						  calcTotal();
+						  console.log(`Total cost: $${total.toFixed(2)}`);
+						}
+
+					</code>
+				</pre>
+			</section>
+
+			<section data-auto-animate>
+				<p>Can you identify which functions are actions?</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers>
+						var cart = [
+						 { item: 'orange', quantity: 1, price: '0.99'},
+						 { item: 'apple', quantity: 1, price: '0.97'},
+						];
+						var total = 0;
+
+						function calcTotal() {
+						  for (let item of cart) {
+					        total += item.quantity * parseFloat(item.price);
+						  }
+						}
+
+						function updateTotal() {
+						  calcTotal();
+						  console.log(`Total cost: $${total.toFixed(2)}`);
+						}
+
+					</code>
+				</pre>
+			</section>
+
+			<section data-auto-animate>
+				<p>Can you identify which functions are actions?</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers="1-5|6-7|9-14|16-20">
+						// Data
+						var cart = [
+						 { item: 'orange', quantity: 1, price: '0.99'},
+						 { item: 'apple', quantity: 1, price: '0.97'},
+						];
+						// Data
+						var total = 0;
+
+						// Action
+						function calcTotal() {
+						  for (let item of cart) {
+					        total += item.quantity * parseFloat(item.price);
+						  }
+						}
+
+						// Action
+						function updateTotal() {
+						  calcTotal();
+						  console.log(`Total cost: $${total.toFixed(2)}`);
+						}
+					</code>
+				</pre>
+			</section>
 		</section>
 
 
@@ -325,8 +416,19 @@
 		navigationMode: 'linear',
 		embedded: false,
 
+		dependencies: [
+			{
+				src: 'plubin/reveal-run-in-terminal.js',
+				callbackk: function() { RunInTerminal.init(); },
+				async: true
+			}
+		],
 		// Learn about plugins: https://revealjs.com/plugins/
-		plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		plugins: [
+			RevealMarkdown,
+			RevealHighlight,
+			RevealNotes,
+		]
 	});
 </script>
 </body>
