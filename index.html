@@ -231,14 +231,13 @@
 					<code data-trim data-line-numbers>
 					async function register() {
 						const form = document.getElementById("form");
-						const submitter = document.querySelector("btn[value=save]");
 						const formData = new FormData(form, submitter);
 						const res = await fetch(url, {
 						  method: 'POST',
 						  body: JSON.stringify(formData)
 						});
 
-						return response.json();
+						return res.json();
 					}
 					</code>
 				</pre>
@@ -253,14 +252,12 @@
 						// Side effect
 						const submitter = document.querySelector("btn[value=save]");
 						// Side effect
-						const formData = new FormData(form, submitter);
-						// Side effect
 						const res = await fetch(url, {
 						  method: 'POST',
 						  body: JSON.stringify(formData)
 						});
 
-						return response.json();
+						return res.json();
 					}
 					</code>
 				</pre>
