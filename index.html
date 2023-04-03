@@ -38,7 +38,7 @@
 	<div class="slides">
 		<!-- SLIDE 1 -->
 		<section data-transition="slide" data-background-color="rgba(224,255,105, 1)">
-			<h2>Functional Programming:</h2>
+			<h2>Functional Programming 1/2:</h2>
 			<h2>Simplifying Code Complexity</h2>
 			<p>Papoy Team - Danniel Rolfe</p>
 			<br>
@@ -88,23 +88,6 @@
 				<h2>Topics that we will <br>cover in this presentation:</h2>
 				<ol>
 					<li>Concepts of functional thinking</li>
-					<li>Functions as first-class citizens</li>
-				</ol>
-			</section>
-			<section data-auto-animate>
-				<h2>Topics that we will <br>cover in this presentation:</h2>
-				<ol>
-					<li>Concepts of functional thinking</li>
-					<li>Functions as first-class citizens</li>
-					<li>Higher-order functions</li>
-				</ol>
-			</section>
-			<section data-auto-animate>
-				<h2>Topics that we will <br>cover in this presentation:</h2>
-				<ol>
-					<li>Concepts of functional thinking</li>
-					<li>Functions as first-class citizens</li>
-					<li>Higher-order functions</li>
 					<li>Immutable data structures</li>
 				</ol>
 			</section>
@@ -112,9 +95,26 @@
 				<h2>Topics that we will <br>cover in this presentation:</h2>
 				<ol>
 					<li>Concepts of functional thinking</li>
+					<li>Immutable data structures</li>
+					<li>Functions as first-class citizens</li>
+				</ol>
+			</section>
+			<section data-auto-animate>
+				<h2>Topics that we will <br>cover in this presentation:</h2>
+				<ol>
+					<li>Concepts of functional thinking</li>
+					<li>Immutable data structures</li>
 					<li>Functions as first-class citizens</li>
 					<li>Higher-order functions</li>
+				</ol>
+			</section>
+			<section data-auto-animate>
+				<h2>Topics that we will <br>cover in this presentation:</h2>
+				<ol>
+					<li>Concepts of functional thinking</li>
 					<li>Immutable data structures</li>
+					<li>Functions as first-class citizens</li>
+					<li>Higher-order functions</li>
 					<li>Functional design patterns</li>
 				</ol>
 			</section>
@@ -122,9 +122,9 @@
 				<h2>Topics that we will <br>cover in this presentation:</h2>
 				<ol>
 					<li>Concepts of functional thinking</li>
+					<li>Immutable data structures</li>
 					<li>Functions as first-class citizens</li>
 					<li>Higher-order functions</li>
-					<li>Immutable data structures</li>
 					<li>Functional design patterns</li>
 					<li>Q&A</li>
 				</ol>
@@ -200,13 +200,25 @@
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<p>
-				Functional programmers masterfully structure functions with side effects to minimize their
-				negative impact on the code's robustness and maintainability
+				Functional programmers are experts at organizing functions in a way that makes code easier to work with.
+			</p>
+			<p>
+				They're experts at minimizing the negative impact of side effects, which happen when a function does
+				something beyond just giving an output.
+			</p>
+		</section>
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<p>
+				Side effects can be tricky to deal with because they can change
+				variables or write to files. But functional programmers use special techniques to make sure everything
+				works smoothly and that the code is easy to take care of over time. Overall, functional programmers
+				masterfully structure functions with side effects to keep the code robust and maintainable.
 			</p>
 		</section>
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<h2>I prefer to think: </h2>
-			<p>Functional programming is like building with blocks: <br>you use functions to solve problems in a way that makes it hard to make mistakes.</p>
+			<p>Functional programming is like building with blocks: <br>you use functions to solve problems in a way that
+				makes it hard to make mistakes.</p>
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
@@ -231,15 +243,15 @@
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
-			<h2>Actions</h2>
+			<h2>Actions: </h2>
 			<p class="attention attention-white">
-				Depend on when they are called.
-				<br>Also known as side effects.</p>
+				Are depend on when they are called,
+				<br>also known as side effects.</p>
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<section data-auto-animate>
-				<h2>Actions</h2>
+				<h2>Actions:</h2>
 				<pre data-id="actions-code-animation">
 					<code data-trim
 						  data-line-numbers="2|3|4|5-8">
@@ -258,7 +270,7 @@
 				</pre>
 			</section>
 			<section data-auto-animate>
-				<h2>Actions</h2>
+				<h2>Actions:</h2>
 				<pre data-id="actions-code-animation">
 					<code data-trim
 					      data-line-numbers="2-9">
@@ -280,10 +292,11 @@
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
-			<h2>Calculations</h2>
-			<p class="attention-orange">
-				Are computations that only depend on inputs and outputs.
-				<br>Also known as pure functions or mathematical functions.</p>
+			<h2>Calculations:</h2>
+			<p class="attention-white">
+				Are computations that only depend on inputs and outputs,
+				also known as pure functions or mathematical functions.
+			</p>
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
@@ -297,10 +310,24 @@
 				</pre>
 		</section>
 
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<h2>Benefits of Calculations:</h2>
+			<p class="attention-white">
+				Are are easier to test.
+			</p>
+			<p class="attention-white">
+				Machines have easier time analyzing the code.
+			</p>
+			<p class="attention-white">
+				Calculations are composable.
+			</p>
+
+		</section>
+
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
-			<h2>Data</h2>
-			<p class="attention-orange">
+			<h2>Data:</h2>
+			<p class="attention attention-white">
 				Are records of facts about events.</p>
 		</section>
 
@@ -314,6 +341,13 @@
 						]
 					</code>
 				</pre>
+		</section>
+
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<h2>Benefits of Data:</h2>
+			<p class="attention attention-white">
+				Data is inert and transparent
+			</p>
 		</section>
 
 
@@ -502,7 +536,7 @@
 			</section>
 
 			<section data-auto-animate>
-				<p>By refactoring calcTotal() to be an action that accepts the cart as a parameter, you make it decoupled and modular in a couple of ways:</p>
+				<p>By refactoring calcTotal() to be a calculation that accepts the cart as a parameter, you make it decoupled and modular in a couple of ways:</p>
 			</section>
 			<section data-auto-animate>
 				<p>1. <span class="attention attention-underscore">Decoupling</span>: Previously, calcTotal() relied on a direct reference to the cart array, which can make it tightly coupled to other parts of your code. This can lead to issues if the cart array structure changes, as it can break the functionality of calcTotal(). By passing the cart as a parameter, calcTotal() becomes independent of the cart implementation and can work with any cart object that has the same structure</p>
