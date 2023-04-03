@@ -80,50 +80,51 @@
 			</section>
 			<section data-auto-animate>
 				<h2>Topics that we will <br>cover in this presentation:</h2>
+				<p>Part one:</p>
+			</section>
+			<section data-auto-animate>
+				<h2>Topics that we will <br>cover in this presentation:</h2>
+				<p>Part one:</p>
 				<ol>
 					<li>Concepts of functional thinking</li>
 				</ol>
 			</section>
 			<section data-auto-animate>
 				<h2>Topics that we will <br>cover in this presentation:</h2>
+				<p>Part one:</p>
 				<ol>
 					<li>Concepts of functional thinking</li>
-					<li>Functions as first-class citizens</li>
-				</ol>
-			</section>
-			<section data-auto-animate>
-				<h2>Topics that we will <br>cover in this presentation:</h2>
-				<ol>
-					<li>Concepts of functional thinking</li>
-					<li>Functions as first-class citizens</li>
 					<li>Higher-order functions</li>
 				</ol>
 			</section>
 			<section data-auto-animate>
 				<h2>Topics that we will <br>cover in this presentation:</h2>
+				<p>Part one:</p>
 				<ol>
 					<li>Concepts of functional thinking</li>
-					<li>Functions as first-class citizens</li>
 					<li>Higher-order functions</li>
+					<li>Q&A</li>
+				</ol>
+			</section>
+			<section data-auto-animate>
+				<h2>Topics that we will <br>cover in this presentation:</h2>
+				<p>Part two:</p>
+				<ol>
 					<li>Immutable data structures</li>
 				</ol>
 			</section>
 			<section data-auto-animate>
 				<h2>Topics that we will <br>cover in this presentation:</h2>
+				<p>Part two:</p>
 				<ol>
-					<li>Concepts of functional thinking</li>
-					<li>Functions as first-class citizens</li>
-					<li>Higher-order functions</li>
 					<li>Immutable data structures</li>
 					<li>Functional design patterns</li>
 				</ol>
 			</section>
 			<section data-auto-animate>
 				<h2>Topics that we will <br>cover in this presentation:</h2>
+				<p>Part two:</p>
 				<ol>
-					<li>Concepts of functional thinking</li>
-					<li>Functions as first-class citizens</li>
-					<li>Higher-order functions</li>
 					<li>Immutable data structures</li>
 					<li>Functional design patterns</li>
 					<li>Q&A</li>
@@ -245,7 +246,7 @@
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<h2>Actions: </h2>
 			<p class="attention attention-white">
-				Are depend on when they are called,
+				Are dependent on when they are called,
 				<br>also known as side effects.</p>
 		</section>
 
@@ -312,17 +313,24 @@
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
-			<h2>Benefits of Calculations:</h2>
-			<p class="attention-white">
-				Are are easier to test.
-			</p>
-			<p class="attention-white">
-				Machines have easier time analyzing the code.
-			</p>
-			<p class="attention-white">
-				Calculations are composable.
-			</p>
-
+			<section data-auto-animate>
+				<h2>Benefits of Calculations:</h2>
+			</section>
+			<section data-auto-animate>
+				<h2>Benefits of Calculations:</h2>
+				<p class="attention-white">Are easier to test.</p>
+			</section>
+			<section data-auto-animate>
+				<h2>Benefits of Calculations:</h2>
+				<p class="attention-white">Are easier to test.</p>
+				<p class="attention-white">Machines have easier time analyzing the code.</p>
+			</section>
+			<section data-auto-animate>
+				<h2>Benefits of Calculations:</h2>
+				<p class="attention-white">Are easier to test.</p>
+				<p class="attention-white">Machines have easier time analyzing the code.</p>
+				<p class="attention-white">Calculations are composable.</p>
+			</section>
 		</section>
 
 
@@ -346,13 +354,11 @@
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<h2>Benefits of Data:</h2>
-			<p class="attention attention-white">
-				Data is inert and transparent
-			</p>
+			<p class="attention attention-white">Data is inert and transparent.</p>
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
-			<p class="attention attention-white">
+			<p>
 				Functional programmers typically begin by focusing on the data, perform calculations using it,
 				and strive to minimize any side effects in their functions.
 			</p>
@@ -631,6 +637,83 @@
 				perform on data. They can simplify our code and make it more reusable, which is especially important
 				as programs become more complex.</p>
 		</section>
+		<!-- HIGHER ORDER FUNCTIONS PART ONE -->
+		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
+			<section data-auto-animate>
+				<p class="attention-white">Did you notice the duplicate iterator in calcTotal() and isFreeShipping()?</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers="4-6|12-14">
+						function isFreeShipping(cart) {
+							 const freeShippingThreshold = 20;
+							 let total = 0;
+							 for (let item of cart) {
+								total += item.quantity * parseFloat(item.price);
+							 }
+							return total <= freeShippingThreshold;
+						}
+
+						function calcTotal(cart) {
+							let total = 0;
+							for (let item of cart) {
+							  total += item.quantity * parseFloat(item.price);
+							}
+							return total.toFixed(2);
+						}
+
+						function updateTotal() {
+						  const shippingCost = isFreeShipping(cart) ? 0 : 5;
+						  const total = calcTotal(cart) + shippingCost;
+						  console.log(`Total cost: $${total}`);
+						}
+					</code>
+				</pre>
+			</section>
+		</section>
+		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
+			<p class="attention-white">Let's use higher order functions to refactor our code to decrease duplication.</p>
+			<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers>
+						function iterateCart(cart, callback) {
+							let result = 0;
+							for (let item of cart) {
+								result += callback(item);
+							}
+						  return result;
+						}
+					</code>
+				</pre>
+		</section>
+		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
+			<section data-auto-animate>
+				<p class="attention-white">Let's refactor calcTotal() and updateTotal() to use our new iterator.</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers="3-4|9-10">
+						function isFreeShipping(cart) {
+						  const freeShippingThreshold = 20;
+						  const total = iterateCart(cart,
+							(item) => item.quantity * parseFloat(item.price));
+						  return total <= freeShippingThreshold;
+						}
+
+						function calcTotal(cart) {
+						  const total = iterateCart(cart,
+							(item) => item.quantity * parseFloat(item.price));
+						  return total.toFixed(1);
+						}
+					</code>
+				</pre>
+			</section>
+		</section>
+
+
+
+
+
+		<!-- HIGHER ORDER FUNCTIONS PART TWO -->
+<!--
 		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
 			<section data-auto-animate>
 				<p class="attention-white">Remember the registration function we talked about at the beginning of
@@ -674,6 +757,7 @@
 					</code>
 				</pre>
 			</section>
+
 			<section data-auto-animate>
 				<p class="attention-white">Remember the registration function we talked about at the beginning of
 					this presentation? Let's take another look at it. As you can see, the function is doing two
@@ -786,6 +870,7 @@
 				</pre>
 			</section>
 		</section>
+-->
 
 
 	</div>
