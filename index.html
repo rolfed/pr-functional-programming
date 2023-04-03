@@ -769,14 +769,14 @@
 							}
 
 							function withRequest(requestFn) {
-							return async function (formData) {
-								try {
-									const res = await requestFn(formData);
-									return res.json();
-								} catch (error) {
-									console.error(`${error} occurred`);
-									throw error;
-								}
+								return async function (formData) {
+									try {
+										const res = await requestFn(formData);
+										return res.json();
+									} catch (error) {
+										console.error(`${error} occurred`);
+										throw error;
+									}
 							}
 						}
 
