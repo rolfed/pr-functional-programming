@@ -210,9 +210,11 @@
 		</section>
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<p>
-				Side effects can be tricky to deal with because they can change
-				variables or write to files. But functional programmers use special techniques to make sure everything
-				works smoothly and that the code is easy to take care of over time. Overall, functional programmers
+				Managing side effects can be challenging because they can modify data unexpectedly.
+				However, functional programmers employ specific techniques to ensure seamless operation
+				and maintainability of the code over time.
+			</p>
+			<p>Overall, functional programmers
 				masterfully structure functions with side effects to keep the code robust and maintainable.
 			</p>
 		</section>
@@ -719,6 +721,74 @@
 							(item) => item.quantity * parseFloat(item.price));
 						  return total.toFixed(1);
 						}
+					</code>
+				</pre>
+			</section>
+		</section>
+		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
+			<p class="attention-white">Do you recall one of the advantages of calculations? They are more straightforward to test.</p>
+			<p class="attention-white">Let's add unit tests to our cart functionality.</p>
+		</section>
+		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
+			<section data-auto-animate>
+				<p class="attention-white">Remember when I said that calculations are easier to test?</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers="1-6|8|9-11|12-13|14|17-21|23|24-26|27-28|29|32-36|38|39-41|42|43|44|47|48-50|51|52-53">
+						function isFreeShipping(cart) {
+						  const freeShippingThreshold = 20;
+						  const total = iterator(cart,
+							(item) => item.quantity * parseFloat(item.price));
+						  return total <= freeShippingThreshold;
+						}
+
+						it('should be free shipping when threshold is met', () => {
+							const mockCart = [
+								{ item: 'banana', quantity: 3, price: '10.00' }
+							];
+							const actualValue = isFreeShipping(mockCart);
+							const expectedValue = true;
+							expect(actualValue).toEqual(expectedValue);
+						})
+
+						function calcTotal(cart) {
+						  const total = iterator(cart,
+							(item) => item.quantity * parseFloat(item.price));
+						  return total.toFixed(1);
+						}
+
+						it('should calculate total', () => {
+							const mockCart = [
+								{ item: 'banana', quantity: 1, price: '10.00' }
+							];
+							const actualValue = calcTotal(mockCart);
+							const expectedValue = '10.00';
+							expect(actualValue).toEqual(expectedValue);
+						})
+
+						function updateTotal() {
+						  const shippingCost = isFreeShipping(cart) ? 0 : 5;
+						  const total = calcTotal(cart) + shippingCost;
+						  console.log(`Total cost: $${total}`);
+						}
+
+						it('should update total with shipping cost', () => {
+							const cart = [
+								{ item: 'banana', quantity: 1, price: '5.00' }
+							];
+							updateTotal();
+							const spy = spyOn('console', 'log');
+							expect(spy).toHaveBeenCalledWith('Total cost: $10.00');
+						})
+
+						it('should update total with out shipping cost', () => {
+							cart = [
+								{ item: 'banana', quantity: 4, price: '5.00' }
+							];
+							updateTotal();
+							const spy = spyOn('console', 'log');
+							expect(spy).toHaveBeenCalledWith('Total cost: $20.00');
+						})
 					</code>
 				</pre>
 			</section>
