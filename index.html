@@ -578,7 +578,7 @@
 							 for (let item of cart) {
 								total += item.quantity * parseFloat(item.price);
 							 }
-							return total > freeShippingThreshold;
+							return total <= freeShippingThreshold;
 						}
 
 					</code>
@@ -596,7 +596,7 @@
 							 for (let item of cart) {
 								total += item.quantity * parseFloat(item.price);
 							 }
-							return total > freeShippingThreshold;
+							return total <= freeShippingThreshold;
 						}
 
 						function calcTotal(cart) {
