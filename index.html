@@ -264,6 +264,7 @@
 						  body: JSON.stringify(formData)
 						});
 
+						const res = await res.json();
 						return res.json();
 					}
 					</code>
@@ -615,6 +616,105 @@
 					</code>
 				</pre>
 			</section>
+
+		</section>
+
+			<!-- HIGHER ORDER FUNCTIONS --->
+		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
+				<p class="attention-white">Programming often involves repetitive actions and calculations on data,
+					which can become cumbersome as programs become more complex.</p>
+		</section>
+
+		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
+			<h2>Higher Order Function</h2>
+			<p class="attention-white">Higher order functions are useful in programming when we have repetitive actions and calculations to
+				perform on data. They can simplify our code and make it more reusable, which is especially important
+				as programs become more complex.</p>
+		</section>
+		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
+			<section data-auto-animate>
+				<p class="attention-white">Remember the registration function we talked about at the beginning of
+					this presentation? Let's take another look at it. As you can see, the function is doing two
+					things.</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers>
+					async function register() {
+						const form = document.getElementById("form");
+						const submitter = document.getElementById("submitter");
+						const formData = new FormData(form, submitter);
+						const res = await fetch(url, {
+						  method: 'POST',
+						  body: JSON.stringify(formData)
+						});
+
+						return res.json();
+					}
+					</code>
+				</pre>
+			</section>
+			<section data-auto-animate>
+				<p class="attention-white">Remember the registration function we talked about at the beginning of
+					this presentation? Let's take another look at it. As you can see, the function is doing two
+					things.</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers="2-4">
+					async function register() {
+						const form = document.getElementById("form");
+						const submitter = document.getElementById("submitter");
+						const formData = new FormData(form, submitter);
+						const res = await fetch(url, {
+						  method: 'POST',
+						  body: JSON.stringify(formData)
+						});
+
+						return res.json();
+					}
+					</code>
+				</pre>
+			</section>
+			<section data-auto-animate>
+				<p class="attention-white">Remember the registration function we talked about at the beginning of
+					this presentation? Let's take another look at it. As you can see, the function is doing two
+					things.</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers="5-10">
+					async function register() {
+						const form = document.getElementById("form");
+						const submitter = document.getElementById("submitter");
+						const formData = new FormData(form, submitter);
+						const res = await fetch(url, {
+						  method: 'POST',
+						  body: JSON.stringify(formData)
+						});
+
+						return res.json();
+					}
+					</code>
+				</pre>
+			</section>
+		</section>
+		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
+			<p class="attention-white">Let's optimize register() by refactoring it and exploring how higher order functions can improve it.</p>
+		</section>
+		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
+			<section data-auto-animate>
+				<p class="attention-white">Let's begin by abstracting the function that retrieves the form data.</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers>
+						function getFormData() {
+							const form = document.getElementById('form');
+							const submitter = document.getElementById('submitter');
+							return new FormData(form, submitter);
+						}
+					</code>
+				</pre>
+			</section>
+		</section>
+
 
 	</div>
 </div>
