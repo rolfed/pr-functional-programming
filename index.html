@@ -766,6 +766,7 @@
 							expect(actualValue).toEqual(expectedValue);
 						})
 
+						// Update total is an ACTION
 						function updateTotal() {
 						  const shippingCost = isFreeShipping(cart) ? 0 : 5;
 						  const total = calcTotal(cart) + shippingCost;
