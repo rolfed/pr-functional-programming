@@ -265,7 +265,6 @@
 						  body: JSON.stringify(formData)
 						});
 
-						const res = await res.json();
 						return res.json();
 					}
 					</code>
@@ -398,7 +397,6 @@
 
 			<section data-auto-animate>
 				<p>Can you identify the actions, calculations or data?</p>
-				<q class="attention-white">Ask yourself, does the function depend on when or how many times it runs?</q>
 				<pre data-id="actions-code-animation">
 					<code data-trim
 						  data-line-numbers>
@@ -421,6 +419,7 @@
 
 					</code>
 				</pre>
+				<q class="attention-white">Ask yourself, does the function depend on when or how many times it runs?</q>
 			</section>
 
 			<section data-auto-animate>
@@ -454,15 +453,15 @@
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
-			<p>In our presentation, we highlighted how <span class="attention attention-underscore">skilled Functional Programmers</span>
-				adeptly <span class="attention attention-underscore">organize functions</span>
+			<p>Earlier, we discussed how <span class="attention attention-underscore">skilled Functional Programmers</span>
+				<span class="attention attention-underscore">organize functions</span>
 				with <span class="attention attention-underscore">minimal side effects</span>
 				to reduce any adverse impact.</p>
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<section data-auto-animate>
-				<p>Let's refactor our cart to minimize side effects</p>
+				<p>Let's refactor our cart functionality to minimize side effects</p>
 				<pre data-id="actions-code-animation">
 					<code data-trim
 						  data-line-numbers>
@@ -480,7 +479,7 @@
 				</pre>
 			</section>
 			<section data-auto-animate>
-				<p>We need to update the calcTotal function to accept the cart
+				<p>We need to convert the calcTotal function from an action to a calculation by passing the cart array
 					as a parameter rather than accessing it directly.</p>
 				<pre data-id="actions-code-animation">
 					<code data-trim
@@ -553,14 +552,28 @@
 				<p>By refactoring calcTotal() to be a calculation that accepts the cart as a parameter, you make it decoupled and modular in a couple of ways:</p>
 			</section>
 			<section data-auto-animate>
-				<p>1. <span class="attention attention-underscore">Decoupling</span>: Previously, calcTotal() relied on a direct reference to the cart array, which can make it tightly coupled to other parts of your code. This can lead to issues if the cart array structure changes, as it can break the functionality of calcTotal(). By passing the cart as a parameter, calcTotal() becomes independent of the cart implementation and can work with any cart object that has the same structure</p>
+				<p>1. <span class="attention attention-underscore">Decoupling</span>: Previously, calcTotal() relied on
+					a direct reference to the cart array, which can make it tightly coupled to other parts of the code.</p>
+			</section>
+			<section data-auto-animate>
+				<p>This can lead to issues if the cart array structure changes, as it can break the functionality of calcTotal().</p>
+				<p>By passing the cart as a parameter, calcTotal() becomes independent of the cart implementation and can
+					work with any cart object that has quantity and price key value pair.</p>
 			</section>
 
 			<section data-auto-animate>
-				<p>2. <span class="attention attention-underscore">Modularity</span>: By separating the calcTotal() function from the cart data, you increase the modularity of your code. This means that if you need to reuse the calcTotal() function in another part of your codebase, you can simply pass in a different cart object and it will work as expected. This makes your code more modular and easier to maintain, as changes to one part of the code won't impact other parts that depend on it</p>
+				<p>2. <span class="attention attention-underscore">Modularity</span>: By separating the calcTotal()
+					function from the cart data, the code becomes modular.</p>
 			</section>
 			<section data-auto-animate>
-				<p>By refactoring calcTotal() to be a calculation that accepts the cart as a parameter, you make it more decoupled and modular. This leads to more robust and maintainable code.</p>
+					<p>This means that if there is a need to reuse the calcTotal() function in another part of the codebase,
+						a different cart object can simply be passed in and it will work as expected.</p>
+				<p>This makes the code more modular and easier to maintain, as changes to one part of the code won't
+					impact other parts that depend on it.</p>
+			</section>
+			<section data-auto-animate>
+				<p>Refactoring calcTotal() to be a calculation that accepts the cart as a parameter makes
+					it more decoupled and modular. This leads to more robust and maintainable code.</p>
 			</section>
 		</section>
 
@@ -570,12 +583,12 @@
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
-			<p>Let's modify our code to implement this feature.</p>
+			<p>Let's modify the cart functionality to implement this feature.</p>
 		</section>
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<section data-auto-animate>
-				<p>Add isFreeShipping() function.</p>
+				<p>Add isFreeShipping() function as a calculation.</p>
 				<pre data-id="actions-code-animation">
 					<code data-trim
 						  data-line-numbers="1|2-3|4-5|7">
@@ -672,12 +685,15 @@
 		</section>
 		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
 			<p class="attention-white">Let's use higher order functions to refactor our code to decrease duplication.</p>
+		</section>
+		<section data-transition="slide" data-background-color="rgba(80,85,191, 1)">
+			<p class="attention-white">Let's abstract the iteration into a function.</p>
 			<pre data-id="actions-code-animation">
 					<code data-trim
-						  data-line-numbers>
-						function iterateCart(cart, callback) {
+						  data-line-numbers="1|2|3-4|6">
+						function iterator(arr, callback) {
 							let result = 0;
-							for (let item of cart) {
+							for (let item of arr) {
 								result += callback(item);
 							}
 						  return result;
@@ -693,13 +709,13 @@
 						  data-line-numbers="3-4|9-10">
 						function isFreeShipping(cart) {
 						  const freeShippingThreshold = 20;
-						  const total = iterateCart(cart,
+						  const total = iterator(cart,
 							(item) => item.quantity * parseFloat(item.price));
 						  return total <= freeShippingThreshold;
 						}
 
 						function calcTotal(cart) {
-						  const total = iterateCart(cart,
+						  const total = iterator(cart,
 							(item) => item.quantity * parseFloat(item.price));
 						  return total.toFixed(1);
 						}
