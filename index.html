@@ -88,14 +88,6 @@
 				<h2>Topics that we will <br>cover in this presentation:</h2>
 				<ol>
 					<li>Concepts of functional thinking</li>
-					<li>Immutable data structures</li>
-				</ol>
-			</section>
-			<section data-auto-animate>
-				<h2>Topics that we will <br>cover in this presentation:</h2>
-				<ol>
-					<li>Concepts of functional thinking</li>
-					<li>Immutable data structures</li>
 					<li>Functions as first-class citizens</li>
 				</ol>
 			</section>
@@ -103,7 +95,6 @@
 				<h2>Topics that we will <br>cover in this presentation:</h2>
 				<ol>
 					<li>Concepts of functional thinking</li>
-					<li>Immutable data structures</li>
 					<li>Functions as first-class citizens</li>
 					<li>Higher-order functions</li>
 				</ol>
@@ -112,9 +103,18 @@
 				<h2>Topics that we will <br>cover in this presentation:</h2>
 				<ol>
 					<li>Concepts of functional thinking</li>
-					<li>Immutable data structures</li>
 					<li>Functions as first-class citizens</li>
 					<li>Higher-order functions</li>
+					<li>Immutable data structures</li>
+				</ol>
+			</section>
+			<section data-auto-animate>
+				<h2>Topics that we will <br>cover in this presentation:</h2>
+				<ol>
+					<li>Concepts of functional thinking</li>
+					<li>Functions as first-class citizens</li>
+					<li>Higher-order functions</li>
+					<li>Immutable data structures</li>
 					<li>Functional design patterns</li>
 				</ol>
 			</section>
@@ -122,9 +122,9 @@
 				<h2>Topics that we will <br>cover in this presentation:</h2>
 				<ol>
 					<li>Concepts of functional thinking</li>
-					<li>Immutable data structures</li>
 					<li>Functions as first-class citizens</li>
 					<li>Higher-order functions</li>
+					<li>Immutable data structures</li>
 					<li>Functional design patterns</li>
 					<li>Q&A</li>
 				</ol>
@@ -350,6 +350,13 @@
 			</p>
 		</section>
 
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<p class="attention attention-white">
+				Functional programmers typically begin by focusing on the data, perform calculations using it,
+				and strive to minimize any side effects in their functions.
+			</p>
+		</section>
+
 
 		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
 			<h2>Let's apply functional thinking.</h2>
@@ -383,8 +390,8 @@
 			</section>
 
 			<section data-auto-animate>
-				<p>Can you identify which functions are actions?</p>
-				<q>Ask yourself, does it depend on when or how many times it runs?</q>
+				<p>Can you identify the actions, calculations or data?</p>
+				<q class="attention-white">Ask yourself, does the function depend on when or how many times it runs?</q>
 				<pre data-id="actions-code-animation">
 					<code data-trim
 						  data-line-numbers>
@@ -410,7 +417,7 @@
 			</section>
 
 			<section data-auto-animate>
-				<p>Can you identify which functions are actions?</p>
+				<p>Can you identify the actions, calculations or data?</p>
 				<pre data-id="actions-code-animation">
 					<code data-trim
 						  data-line-numbers="1-5|6-7|9-14|16-20">
@@ -546,11 +553,68 @@
 				<p>2. <span class="attention attention-underscore">Modularity</span>: By separating the calcTotal() function from the cart data, you increase the modularity of your code. This means that if you need to reuse the calcTotal() function in another part of your codebase, you can simply pass in a different cart object and it will work as expected. This makes your code more modular and easier to maintain, as changes to one part of the code won't impact other parts that depend on it</p>
 			</section>
 			<section data-auto-animate>
-				<p>In summary, by refactoring calcTotal() to be an calculation that accepts the cart as a parameter, you make it more decoupled and modular. This leads to more robust and maintainable code.</p>
+				<p>By refactoring calcTotal() to be a calculation that accepts the cart as a parameter, you make it more decoupled and modular. This leads to more robust and maintainable code.</p>
 			</section>
 		</section>
 
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<p>Imagine that the business makes a request that we offer free shipping to all orders that is greater
+				than $20.00.</p>
+		</section>
 
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<p>Let's modify our code to implement this feature.</p>
+		</section>
+
+		<section data-transition="slide" data-background-color="rgba(247,133,48, 1)">
+			<section data-auto-animate>
+				<p>Add isFreeShipping() function.</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers="1|2-3|4-5|7">
+						function isFreeShipping(cart) {
+							 var freeShippingThreshold = 20;
+							 var total = 0;
+							 for (let item of cart) {
+								total += item.quantity * parseFloat(item.price);
+							 }
+							return total > freeShippingThreshold;
+						}
+
+					</code>
+				</pre>
+			</section>
+
+			<section data-auto-animate>
+				<p>Add isFreeShipping() function.</p>
+				<pre data-id="actions-code-animation">
+					<code data-trim
+						  data-line-numbers="18|19|20|21">
+						function isFreeShipping(cart) {
+							 var freeShippingThreshold = 20;
+							 var total = 0;
+							 for (let item of cart) {
+								total += item.quantity * parseFloat(item.price);
+							 }
+							return total > freeShippingThreshold;
+						}
+
+						function calcTotal(cart) {
+							var total = 0;
+							for (let item of cart) {
+							  total += item.quantity * parseFloat(item.price);
+							}
+							return total.toFixed(2);
+						}
+
+						function updateTotal() {
+						  const shippingCost = isFreeShipping(cart) ? 0 : 5;
+						  const total = calcTotal(cart) + shippingCost;
+						  console.log(`Total cost: $${total}`);
+						}
+					</code>
+				</pre>
+			</section>
 
 	</div>
 </div>
